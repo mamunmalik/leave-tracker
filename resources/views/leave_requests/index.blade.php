@@ -35,9 +35,9 @@
                                     <th scope="col" class="px-6 py-3">
                                         Comments
                                     </th>
-                                    @if (Auth::user()->isAdmin())
+                                    @if (auth()->user()->isAdmin())
                                         <th scope="col" class="px-6 py-3">
-                                            <span class="sr-only">Details</span>
+                                            <span class="sr-only">Action</span>
                                         </th>
                                     @endif
                                 </tr>
@@ -63,15 +63,16 @@
                                             {{ $item->leave_reason }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ $item->status }}
+                                            {{ \App\Enums\LeaveStatus::{$item->status}->value }}
                                         </td>
                                         <td class="px-6 py-4">
                                             {{ $item->comments }}
                                         </td>
                                         @if (Auth::user()->isAdmin())
                                             <td class="px-6 py-4 text-right">
-                                                <a href="#"
-                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Details</a>
+                                                @if ($item->status == \App\Enums\LeaveStatus::PENDING->name)
+                                                    <a href="{{ route('leave_requests.show', $item->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Details</a>
+                                                @endif
                                             </td>
                                         @endif
                                     </tr>

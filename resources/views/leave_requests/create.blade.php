@@ -24,7 +24,7 @@
                             @csrf
 
                             <div>
-                                <x-input-label for="type" :value="__('Leave Type')" />
+                                <x-input-label for="leave_type" :value="__('Leave Type')" />
                                 <select id="leave_type" name="leave_type" type="text" class="mt-1 block w-full"
                                     :value="old('leave_type', null)" required autofocus autocomplete="off">
                                     @foreach (\App\Enums\LeaveType::cases() as $leave_types)

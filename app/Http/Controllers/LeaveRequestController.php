@@ -20,7 +20,7 @@ class LeaveRequestController extends Controller
         if (!Auth::user()->isAdmin()) {
             $leave_requests->where('user_id', Auth::id());
         }
-        $leave_requests = $leave_requests->paginate(2);
+        $leave_requests = $leave_requests->paginate(10);
         return view('leave_requests.index', compact('leave_requests'));
     }
 
@@ -54,7 +54,7 @@ class LeaveRequestController extends Controller
      */
     public function show(LeaveRequest $leaveRequest)
     {
-        //
+        return view('leave_requests.show', compact('leaveRequest'));
     }
 
     /**
@@ -70,7 +70,15 @@ class LeaveRequestController extends Controller
      */
     public function update(Request $request, LeaveRequest $leaveRequest)
     {
-        //
+        if (!Auth::user()->isAdmin()) {
+            return redirect()->back();
+        }
+
+        $leaveRequest->update($request->all());
+
+        return redirect()
+            ->route('leave_requests.index')
+            ->with('flash_success', "Leave request updated successfully!");
     }
 
     /**
