@@ -25,10 +25,10 @@
 
                             <div>
                                 <x-input-label for="type" :value="__('Leave Type')" />
-                                <select id="type" name="type" type="text" class="mt-1 block w-full"
-                                    :value="old('type', null)" required autofocus autocomplete="off">
-                                    @foreach (\App\Enums\LeaveType::cases() as $type)
-                                        <option value="{{ $type->name }}">{{ $type->value }}</option>
+                                <select id="leave_type" name="leave_type" type="text" class="mt-1 block w-full"
+                                    :value="old('leave_type', null)" required autofocus autocomplete="off">
+                                    @foreach (\App\Enums\LeaveType::cases() as $leave_types)
+                                        <option value="{{ $leave_types->name }}">{{ $leave_types->value }}</option>
                                     @endforeach
                                 </select>
                                 <x-input-error class="mt-2" :messages="$errors->get('type')" />
@@ -36,22 +36,22 @@
 
                             <div>
                                 <x-input-label for="start_date" :value="__('Start Date')" />
-                                <x-text-input id="start_date" name="start_date" type="text" class="mt-1 block w-full"
-                                    :value="old('start_date', null)" required autocomplete="off" />
+                                <x-text-input id="start_date" name="start_date" type="date" class="mt-1 block w-full"
+                                    :value="old('start_date', null)" autocomplete="off" />
                                 <x-input-error class="mt-2" :messages="$errors->get('start_date')" />
                             </div>
 
                             <div>
                                 <x-input-label for="end_date" :value="__('End Date')" />
-                                <x-text-input id="end_date" name="end_date" type="text" class="mt-1 block w-full"
-                                    :value="old('end_date', null)" required autocomplete="off" />
+                                <x-text-input id="end_date" name="end_date" type="date" class="mt-1 block w-full"
+                                    :value="old('end_date', null)" autocomplete="off" />
                                 <x-input-error class="mt-2" :messages="$errors->get('end_date')" />
                             </div>
 
                             <div>
                                 <x-input-label for="leave_reason" :value="__('Leave Reason')" />
-                                <x-text-input id="leave_reason" name="leave_reason" type="text" class="mt-1 block w-full"
-                                    :value="old('leave_reason', null)" required autocomplete="off" />
+                                <x-text-input id="leave_reason" name="leave_reason" type="text"
+                                    class="mt-1 block w-full" :value="old('leave_reason', null)" required autocomplete="off" />
                                 <x-input-error class="mt-2" :messages="$errors->get('leave_reason')" />
                             </div>
 

@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum LeaveStatus: string
 {
-    case Pending = 'Pending';
-    case Approved = 'Approved';
-    case Rejected = 'Rejected';
+    case PENDING = "Pending";
+    case APPROVED = "Approved";
+    case REJECTED = "Rejected";
 }

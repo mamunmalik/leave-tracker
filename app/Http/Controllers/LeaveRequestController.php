@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LeaveRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LeaveCreateRequest;
 
 class LeaveRequestController extends Controller
@@ -13,7 +14,14 @@ class LeaveRequestController extends Controller
      */
     public function index()
     {
-        //
+        $leave_requests = LeaveRequest::with('user');
+
+        //employee get history for his/her own
+        if (!Auth::user()->isAdmin()) {
+            $leave_requests->where('user_id', Auth::id());
+        }
+        $leave_requests = $leave_requests->paginate(2);
+        return view('leave_requests.index', compact('leave_requests'));
     }
 
     /**
@@ -21,6 +29,9 @@ class LeaveRequestController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->isAdmin()) {
+            return redirect()->back();
+        }
         return view('leave_requests.create');
     }
 
@@ -29,7 +40,13 @@ class LeaveRequestController extends Controller
      */
     public function store(LeaveCreateRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['user_id'] = Auth()->id();
+        LeaveRequest::create($data);
+
+        return redirect()
+            ->route('leave_requests.index')
+            ->with('flash_success', "Leave request created successfully!");
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum LeaveType: string
 {
-    case CasualLeave = 'Casual Leave';
-    case SickLeave = 'Sick Leave';
-    case EmergencyLeave = 'Emergency Leave';
+    case CASUAL = "Casual Leave";
+    case SICK = "Sick Leave";
+    case EMERGENCY = "Emergency Leave";
 }

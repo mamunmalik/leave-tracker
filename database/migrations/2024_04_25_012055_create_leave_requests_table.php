@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('leave_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->index();
-            $table->enum('leave_type', [LeaveType::CasualLeave, LeaveType::SickLeave, LeaveType::EmergencyLeave]);
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');
+            $table->enum('leave_type', [LeaveType::CASUAL->name, LeaveType::SICK->name, LeaveType::EMERGENCY->name]);
+            $table->date('start_date');
+            $table->date('end_date');
             $table->string('leave_reason');
-            $table->enum('status', [LeaveStatus::Pending, LeaveStatus::Approved, LeaveStatus::Rejected])->default(LeaveStatus::Pending);
+            $table->enum('status', [LeaveStatus::PENDING->name, LeaveStatus::APPROVED->name, LeaveStatus::REJECTED->name])->default(LeaveStatus::PENDING->name);
             $table->string('comments')->nullable();
             $table->timestamps();
         });
