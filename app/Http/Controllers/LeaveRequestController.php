@@ -58,14 +58,6 @@ class LeaveRequestController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(LeaveRequest $leaveRequest)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, LeaveRequest $leaveRequest)
@@ -81,11 +73,4 @@ class LeaveRequestController extends Controller
             ->with('flash_success', "Leave request updated successfully!");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(LeaveRequest $leaveRequest)
-    {
-        //
-    }
 }

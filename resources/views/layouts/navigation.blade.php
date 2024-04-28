@@ -21,10 +21,16 @@
                         {{ __('Leave History') }}
                     </x-nav-link>
                 </div>
-                @if (!Auth::user()->isAdmin())
+                @if (Auth::user()->isAdmin())
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
+                            {{ __('User List') }}
+                        </x-nav-link>
+                    </div>
+                @else
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('leave_requests.create')" :active="request()->routeIs('leave_requests.create')">
-                            {{ __('Leave Request') }}
+                            {{ __('Leave Request Form') }}
                         </x-nav-link>
                     </div>
                 @endif

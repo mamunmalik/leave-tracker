@@ -14,11 +14,12 @@ Route::middleware('auth')->group(function () {
         return redirect(route('dashboard'));
     });
 
+    Route::get('/index', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('leave_requests', LeaveRequestController::class);
+    Route::resource('leave_requests', LeaveRequestController::class)->except(['edit', 'destroy']);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

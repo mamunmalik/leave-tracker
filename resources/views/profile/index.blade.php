@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Leave Request History') }}
+            {{ __('User List') }}
         </h2>
     </x-slot>
 
@@ -22,9 +22,9 @@
                                         Employee name
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Leave Type
+                                        Email
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    {{-- <th scope="col" class="px-6 py-3">
                                         Start Date
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -43,11 +43,11 @@
                                         <th scope="col" class="px-6 py-3">
                                             <span class="sr-only">Action</span>
                                         </th>
-                                    @endif
+                                    @endif --}}
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($leave_requests as $item)
+                                @forelse ($users as $item)
                                     <tr
                                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         <th scope="row"
@@ -55,15 +55,12 @@
                                             {{ $item->id }}
                                         </th>
                                         <th class="px-6 py-4">
-                                            {{ $item->user?->name }}
+                                            {{ $item->name }}
                                         </th>
                                         <td class="px-6 py-4">
-                                            {{ \App\Enums\LeaveType::{$item->leave_type}->value }}
+                                            {{ $item->email }}
                                         </td>
-                                        <td class="px-6 py-4">
-                                            {{ $item->start_date->format('jS M, Y') }}
-                                        </td>
-                                        <td class="px-6 py-4">
+                                        {{-- <td class="px-6 py-4">
                                             {{ $item->end_date->format('jS M, Y') }}
                                         </td>
                                         <td class="px-6 py-4">
@@ -98,7 +95,7 @@
                                                     <a href="{{ route('leave_requests.show', $item->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Approval</a>
                                                 @endif
                                             </td>
-                                        @endif
+                                        @endif --}}
                                     </tr>
                                 @empty
                                     <tr
@@ -113,7 +110,7 @@
                         </table>
 
                         <div class="mt-6">
-                            {{ $leave_requests->links() }}
+                            {{ $users->links() }}
                         </div>
 
                     </div>
