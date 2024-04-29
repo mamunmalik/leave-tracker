@@ -19,7 +19,7 @@
                         <div class="bg-white shadow-md rounded-lg p-4">
                             <div class="font-bold text-lg">Leave Request Information</div>
                             <div class="mt-2">Employee Name: {{ $leaveRequest->user?->name }}</div>
-                            <div class="mt-1">Leave Type: {{ \App\Enums\LeaveType::{$leaveRequest->leave_type}->value }}</div>
+                            <div class="mt-1">Leave Type: {{ constant("\App\Enums\LeaveType::$leaveRequest->leave_type")->value }}</div>
                             <div class="mt-1">Start Date: {{ $leaveRequest->start_date->format('jS M, Y') }}</div>
                             <div class="mt-1">End Date: {{ $leaveRequest->end_date->format('jS M, Y') }}</div>
                             <div class="mt-1">Leave Reason: {{ $leaveRequest->leave_reason }}</div>

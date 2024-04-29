@@ -27,7 +27,7 @@ class LeaveRequestMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Leave Request Submitted - Acknowledgement',
+            subject: 'Leave Request Submitted',
         );
     }
 

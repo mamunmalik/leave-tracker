@@ -53,7 +53,7 @@ class LeaveRequestController extends Controller
         $leaveRequestObj = LeaveRequest::create($data);
 
         $data['name'] = Auth()->user()->name;
-        $data['leave_type'] = LeaveType::{$request->leave_type}->value;
+        $data['leave_type'] = constant("\App\Enums\LeaveType::$request->leave_type")->value;
         $data['start_date'] = $leaveRequestObj->start_date->format('jS M, Y');
         $data['end_date'] = $leaveRequestObj->end_date->format('jS M, Y');
 
@@ -92,7 +92,7 @@ class LeaveRequestController extends Controller
             $userObj = User::find($leaveRequest->user_id);
 
             $data['name'] = $userObj->name;
-            $data['leave_type'] = LeaveType::{$leaveRequest->leave_type}->value;
+            $data['leave_type'] = constant("\App\Enums\LeaveType::$leaveRequest->leave_type")->value;
             $data['start_date'] = $leaveRequest->start_date->format('jS M, Y');
             $data['end_date'] = $leaveRequest->end_date->format('jS M, Y');
             $data['leave_reason'] = $leaveRequest->leave_reason;
