@@ -16,58 +16,31 @@
                             </h2>
                         </header>
 
+                        <div class="bg-white shadow-md rounded-lg p-4">
+                            <div class="font-bold text-lg">Leave Request Information</div>
+                            <div class="mt-2">Employee Name: {{ $leaveRequest->user?->name }}</div>
+                            <div class="mt-1">Leave Type: {{ \App\Enums\LeaveType::{$leaveRequest->leave_type}->value }}</div>
+                            <div class="mt-1">Start Date: {{ $leaveRequest->start_date->format('jS M, Y') }}</div>
+                            <div class="mt-1">End Date: {{ $leaveRequest->end_date->format('jS M, Y') }}</div>
+                            <div class="mt-1">Leave Reason: {{ $leaveRequest->leave_reason }}</div>
+                        </div>
+
                         <form method="post" action="{{ route('leave_requests.update', $leaveRequest->id) }}"
                             class="mt-6 space-y-6">
                             @csrf
                             @method('patch')
 
                             <div>
-                                <x-input-label for="user_id" :value="__('Employee')" />
-                                <x-text-input id="user_id" name="user_id" type="text" class="mt-1 block w-full"
-                                    :value="old('user_id', $leaveRequest->user?->name)" required autofocus disabled readonly />
-                            </div>
-
-                            <div>
-                                <x-input-label for="leave_type" :value="__('Leave Type')" />
-                                <select id="leave_type" name="leave_type" type="text" class="mt-1 block w-full"
-                                    :value="old('leave_type', $leaveRequest - > leave_type)" required autofocus disabled
-                                    readonly>
-                                    @foreach (\App\Enums\LeaveType::cases() as $leave_types)
-                                        <option value="{{ $leave_types->name }}" @selected($leave_types->name == $leaveRequest->leave_type)>
-                                            {{ $leave_types->value }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div>
-                                <x-input-label for="start_date" :value="__('Start Date')" />
-                                <x-text-input id="start_date" name="start_date" type="date" class="mt-1 block w-full"
-                                    value="{{ $leaveRequest->start_date }}" disabled readonly />
-                            </div>
-
-                            <div>
-                                <x-input-label for="end_date" :value="__('End Date')" />
-                                <x-text-input id="end_date" name="end_date" type="date" class="mt-1 block w-full"
-                                    :value="old('end_date', $leaveRequest->end_date)" disabled readonly />
-                            </div>
-
-                            <div>
-                                <x-input-label for="leave_reason" :value="__('Leave Reason')" />
-                                <x-text-input id="leave_reason" name="leave_reason" type="text"
-                                    class="mt-1 block w-full" :value="old('leave_reason', $leaveRequest->leave_reason)" required disabled readonly />
-                            </div>
-
-                            <div>
                                 <x-input-label for="comments" :value="__('Comments')" />
                                 <x-text-input id="comments" name="comments" type="text" class="mt-1 block w-full"
-                                    :value="old('comments', $leaveRequest->comments)" required />
+                                    :value="old('comments', $leaveRequest->comments)" required/>
                                 <x-input-error class="mt-2" :messages="$errors->get('comments')" />
                             </div>
 
                             <div>
                                 <x-input-label for="status" :value="__('Leave Type')" />
                                 <select id="status" name="status" type="text" class="mt-1 block w-full"
-                                    :value="old('status', $leaveRequest - > status)" required autofocus>
+                                    :value="old('status', $leaveRequest->status)" required autofocus>
                                     @foreach (\App\Enums\LeaveStatus::cases() as $status)
                                         @if ($status->name != \App\Enums\LeaveStatus::PENDING->name)
                                             <option value="{{ $status->name }}">{{ $status->value }}</option>

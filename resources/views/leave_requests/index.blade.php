@@ -70,24 +70,20 @@
                                             {{ $item->leave_reason }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            @php
-                                                $statusColor="";
-                                                switch ($item->status) {
-                                                    case \App\Enums\LeaveStatus::PENDING->name:
-                                                        $statusColor="yellow";
-                                                        break;
-                                                    case \App\Enums\LeaveStatus::APPROVED->name:
-                                                        $statusColor="green";
-                                                        break;
-                                                    case \App\Enums\LeaveStatus::REJECTED->name:
-                                                        $statusColor="red";
-                                                        break;
-                                                    default:
-                                                        $statusColor="blue";
-                                                        break;
-                                                }
-                                            @endphp
-                                            <span class="bg-{{$statusColor}}-100 text-{{$statusColor}}-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-{{$statusColor}}-300 border border-{{$statusColor}}-400">{{ \App\Enums\LeaveStatus::{$item->status}->value }}</span>
+                                            @switch ($item->status)
+                                                @case(\App\Enums\LeaveStatus::PENDING->name)
+                                                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300">{{ \App\Enums\LeaveStatus::{$item->status}->value }}</span>
+                                                    @break;
+                                                @case(\App\Enums\LeaveStatus::APPROVED->name)
+                                                    <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">{{ \App\Enums\LeaveStatus::{$item->status}->value }}</span>
+                                                    @break;
+                                                @case(\App\Enums\LeaveStatus::REJECTED->name)
+                                                    <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">{{ \App\Enums\LeaveStatus::{$item->status}->value }}</span>
+                                                    @break;
+                                                @default
+                                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">{{ \App\Enums\LeaveStatus::{$item->status}->value }}</span>
+                                                    @break;
+                                            @endswitch
                                         </td>
                                         <td class="px-6 py-4">
                                             {{ $item->comments }}

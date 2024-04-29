@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Enums\LeaveType;
+use App\Enums\LeaveStatus;
 use App\Models\LeaveRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -55,16 +56,14 @@ class LeaveCreateRequest extends FormRequest
 
     private function checkLeaveDate(): string
     {
-
-        // $leaveRequest = LeaveRequest::where('user_id', Auth::id())
-        //     ->where('start_date', '>=', $this->start_date)
-        //     ->where('end_date', '<=', $this->end_date)
-        //     //->where('status', '!=', LeaveStatus::REJECTED->name)
-        //     ->get();    
-        // dd($leaveRequest);
-        // if ($leaveRequest) {
-        //     return 'A Leave Request is already applied "' . $this->start_date . '" to "' . $this->end_date;
-        // }
+        $leaveRequest = LeaveRequest::where('user_id', Auth::user()->id)
+            ->whereDate('start_date', '>=', $this->start_date)
+            ->whereDate('end_date', '<=', $this->end_date)
+            ->where('status', '!=', LeaveStatus::REJECTED->name)
+            ->exists();
+        if ($leaveRequest) {
+            return 'A Leave Request is already applied "' . $this->start_date . '" to "' . $this->end_date;
+        }
         return '';
     }
 }

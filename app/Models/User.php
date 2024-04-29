@@ -20,7 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'type'
+        'type',
+        'is_approved'
     ];
 
     /**
@@ -49,6 +50,11 @@ class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->type == "admin";
+    }
+
+    public function isApproved(): bool
+    {
+        return $this->is_approved == true;
     }
 
     public function leaveRequests()

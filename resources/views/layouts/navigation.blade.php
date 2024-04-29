@@ -23,7 +23,7 @@
                 </div>
                 @if (Auth::user()->isAdmin())
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                             {{ __('User List') }}
                         </x-nav-link>
                     </div>

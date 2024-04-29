@@ -31,20 +31,20 @@
                                 <dl
                                     class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-4 dark:text-white sm:p-8">
                                     <div class="flex flex-col items-center justify-center">
-                                        <dt class="mb-2 text-3xl font-extrabold">5</dt>
-                                        <dd class="text-gray-500 dark:text-gray-400">Number of Leave Requests</dd>
+                                        <dt class="mb-2 text-3xl font-extrabold">{{ $totalLeaveRequests }}</dt>
+                                        <dd  class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Number of Leave Requests</dd>
                                     </div>
                                     <div class="flex flex-col items-center justify-center">
-                                        <dt class="mb-2 text-3xl font-extrabold">2</dt>
-                                        <dd class="text-gray-500 dark:text-gray-400">Number of Pending Requests</dd>
+                                        <dt class="mb-2 text-3xl font-extrabold">{{ $totalPendingRequests }}</dt>
+                                        <dd class="bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">Number of Pending Requests</dd>
                                     </div>
                                     <div class="flex flex-col items-center justify-center">
-                                        <dt class="mb-2 text-3xl font-extrabold">2</dt>
-                                        <dd class="text-gray-500 dark:text-gray-400">Number of Approved Requests</dd>
+                                        <dt class="mb-2 text-3xl font-extrabold">{{ $totalApprovedRequests }}</dt>
+                                        <dd class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Number of Approved Requests</dd>
                                     </div>
                                     <div class="flex flex-col items-center justify-center">
-                                        <dt class="mb-2 text-3xl font-extrabold">1</dt>
-                                        <dd class="text-gray-500 dark:text-gray-400">Number of Rejected Requests</dd>
+                                        <dt class="mb-2 text-3xl font-extrabold">{{ $totalRejectedRequests }}</dt>
+                                        <dd class="bg-red-100 text-red-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Number of Rejected Requests</dd>
                                     </div>
                                 </dl>
                             </div>

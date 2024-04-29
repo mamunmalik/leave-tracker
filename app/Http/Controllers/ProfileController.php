@@ -14,20 +14,6 @@ class ProfileController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        if (!Auth::user()->isAdmin()) {
-            return redirect()->back();
-        }
-
-        $users = User::where('type', 'employee')->paginate(10);
-
-        return view('profile.index', compact('users'));
-    }
-
-    /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
